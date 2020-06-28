@@ -209,23 +209,27 @@ AS WITH seg_hyd AS (
 ```
 
 ### hy-n:WatercourseLinkSequence
+The following views provide data on sequences of segments to be provided as a WatercourseLinkSequence in the structure required for provision under the INSPIRE Hydrography Network Data Specification.
 
-### ID Function
-
-The following function is used to generate an identifier by concatenating the localId with the version. 
-This function can also be expanded to add a ```'_'``` prefix as required for provision of a gml:id from a numeric identifier.
-
+#### hyn_linksequence_v
+The view hyn_linksequence_v is the main table for provision of data for the hy-n:WatercourseLinkSequence Feature Type
 ```
-CREATE OR REPLACE FUNCTION public.set_id_tnw()
- RETURNS trigger
- LANGUAGE plpgsql
-AS $function$
-
-	BEGIN
-		NEW.id := NEW.localid || '-' || NEW.version;
-	RETURN NEW;
-END 
-
-$function$
-;
+CREATE OR REPLACE VIEW public.hyn_linksequence_v
+AS SELECT DISTINCT trm.cdtronconh AS id,
+    'http://services.sandre.eaufrance.fr/telechargement/geo/ETH/BDCarthage/FXX/2017/Bassins/TronconHydrograElt/????'::text AS metadata,
+    trm.cdtronconh::text AS localid,
+    'http://services.sandre.eaufrance.fr/telechargement/geo/ETH/BDCarthage/FXX/2017/Bassins/TronconHydrograElt/????'::text AS namespace,
+    '1'::text AS version,
+    '2020-03-17 21:00:00'::text AS beginlsv,
+    NULL::timestamp without time zone AS endlsv,
+    'http://service.datacove.eu/geoserver/ogc/features/collections/hy-n:WatercourseLinkSequence/items/_'::text AS sequurl,
+    'http://guid.datacove.eu/hyn/sequ/'::text AS gensequurl
+   FROM tronconhydrograelt_02_rhin_meuse trm
+  WHERE NOT trm.cdtronconh IS NULL;
 ```
+
+#### Links from hyn_watercourselink_v
+
+The information on the individual segments comprising the watercourse link sequence are taken from the same table as used to provide data on the individual segments.
+
+* FK: cdtronconh --> hyn_watercourselink.id
