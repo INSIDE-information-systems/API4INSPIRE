@@ -1,5 +1,7 @@
 # API4INSPIRE Hydrography Network Mapping for BRGM
 
+In the following sections, we provide information on the source data used and transformations required for the provision of Hydrography Networks under the INSPIRE Schema (https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd )[https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd ]
+
 ## Data Sources
 
 ### Segments
@@ -7,8 +9,8 @@
 The source data for the French River Segments was imported from the ShapeFile TronconHydrograElt_02_Rhin-Meuse. This data was imported into a PostGIS DB via QGIS. 
 All further mapping is done from the resulting database table.
 
-** Note: in this dataset, there are too many segments, many could be merged. This data cleaning process was NOT performed on the available data. 
-However, the further mapping steps are still applicable once the data has been cleaned.
+*Note: in this dataset, there are too many segments, many could be merged. This data cleaning process was NOT performed on the available data. 
+However, the further mapping steps are still applicable once the data has been cleaned.*
 
 The following database table is the basis of all views required to support the App Schema Mapping provided.
 ```
@@ -61,3 +63,18 @@ CREATE TABLE public.noeudhydrographique_02_rhin_meuse (
 	CONSTRAINT noeudhydrographique_02_rhin_meuse_pk PRIMARY KEY (ogc_fid)
 );
 ```
+
+## Views for App Schema Mapping
+
+The following views have been created to transform the source data described above as required to provide data for the following INSPIRE Feature Types:
+* hy-n:WatercourseLink: A segment within the Hydrography Network
+* hy-n:HydroNode: A node within the Hydrography Network
+* hy-n:WatercourseLinkSequence: A set of WatercourseLink feature types comprising a Watercourse Sequence
+
+### hy-n:WatercourseLink
+
+### hy-n:HydroNode
+
+### hy-n:WatercourseLinkSequence
+
+
