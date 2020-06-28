@@ -71,6 +71,8 @@ The following views have been created to transform the source data described abo
 * hy-n:HydroNode: A node within the Hydrography Network
 * hy-n:WatercourseLinkSequence: A set of WatercourseLink feature types comprising a Watercourse Sequence
 
+All sql for the views is available from [https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/sql/Hydrography.sql](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/sql/Hydrography.sql)
+
 ### hy-n:WatercourseLink
 
 The following views provide the segment data in the structure required for provision under the INSPIRE Hydrography Network Data Specification.
