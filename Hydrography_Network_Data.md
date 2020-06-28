@@ -1,6 +1,6 @@
 # API4INSPIRE Hydrography Network Mapping for BRGM
 
-In the following sections, we provide information on the source data used and transformations required for the provision of Hydrography Networks under the INSPIRE Schema (https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd )[https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd ]
+In the following sections, we provide information on the source data used and transformations required for the provision of Hydrography Networks under the INSPIRE Schema [https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd](https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd)
 
 ## Data Sources
 
