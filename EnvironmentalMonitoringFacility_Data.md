@@ -3,6 +3,13 @@
 In the following sections, we provide information on the source data used and transformations required for the provision of Environmental Monitoring Facilities 
 under the extended INSPIRE Schema [https://schema.datacove.eu/EnvironmentalMonitoringFacilitiesFXX.xsd](https://schema.datacove.eu/EnvironmentalMonitoringFacilitiesFXX.xsd)
 
+The following modifications where made to the INSPIRE EnvironmentalMonitoringFacilities.xsd:
+* EnvironmentalMonitoringFacility
+  * Added ef:relatedFeature - xlink to other related features. We couldn't use ef:relatedTo as this must point to a further EF
+  * Added ef:sameAs - xlink to other representation of the same object 
+* ObservingCapability
+  * Added ef:ultimateFeatureOfInterest - here we finally provide the cdtronconhydrographique link
+
 The following sections we describe the data source, mapping to the INSPIRE EnvironmentalMonitoringFacility featureType and subtypes
 as well as the creation of views for App Schema Mapping.
 
