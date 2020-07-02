@@ -219,3 +219,9 @@ AS SELECT NULL::text AS city,
   WHERE NOT sf.cdtronconhydrographique::text ~~ ''::text AND NOT sf.dtmiseservicestationhydro::text ~~ ''::text;
 ```
 
+## GeoServer App Schema Mapping files for EnvironmentalMonitoringFacility
+
+The following GeoServer App Schema Mapping files are available (all required for ef:EnvironmentalMonitoringFacility):
+* [Mapping for ef:EnvironmentalMonitoringFacility](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/AppSchemaMapping/MappingEF.xml)
+* [base2:RelatedParty](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/AppSchemaMapping/MappingBS.xml)
+* [Mapping for sf-w:WaterSample](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/AppSchemaMapping/MappingSF-W.xml)
