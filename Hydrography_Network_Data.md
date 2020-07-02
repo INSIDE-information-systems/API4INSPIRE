@@ -74,7 +74,7 @@ CREATE TABLE public.noeudhydrographique_02_rhin_meuse (
 The mapping from the source data to the INSPIRE data models was done as Google Sheets, one for each INSPIRE Type to be provided. The table has the following columns:
 * DB Table: The view from which the data element is made available for GeoServer App Schema Mapping.
 * DB Column: The column within the view from which the data element is made available for GeoServer App Schema Mapping.
-* {featureTypeName}: The target DataType, alternatively ```hy-n:WatercourseLink```, ```hy-n:WatercourseLinkSequence``` or ```Hy-n:HydroNode```
+* {featureTypeName}: The target XPath within the featureType for the data element, {featureTypeName} is alternatively ```hy-n:WatercourseLink```, ```hy-n:WatercourseLinkSequence``` or ```Hy-n:HydroNode```
 * shp attribute: Attribute for the data element within the shapefile.
 * Constant: Constant value if required. This column also contains information on prefixes applied to data taken from the DB table.
 
