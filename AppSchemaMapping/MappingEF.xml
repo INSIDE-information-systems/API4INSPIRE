@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GeoServer configuration brought to you courtesy of DataCove.EU
+www.datacove.eu 
+-->
+<as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd">
+	<namespaces>
+		<Namespace>
+			<prefix>ef</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/ef/4.0</uri>
+		</Namespace>
+		<Namespace>
+			<prefix>au</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/au/4.0</uri>
+		</Namespace>	
+
+		<Namespace>
+			<prefix>gn</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/gn/4.0</uri>
+		</Namespace>
+		<Namespace>
+			<prefix>ad</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/ad/4.0</uri>
+		</Namespace>
+		<Namespace>
+			<prefix>gco</prefix>
+			<uri>http://www.isotc211.org/2005/gco</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>ugs</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/us-govserv/4.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>xlink</prefix>
+			<uri>http://www.w3.org/1999/xlink</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>base</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/base/3.3</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>base2</prefix>
+			<uri>http://inspire.ec.europa.eu/schemas/base2/2.0</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>gmd</prefix>
+			<uri>http://www.isotc211.org/2005/gmd</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>xsi</prefix>
+			<uri>http://www.w3.org/2001/XMLSchema-instance</uri>
+		</Namespace>
+
+		<Namespace>
+			<prefix>gml</prefix>
+			<uri>http://www.opengis.net/gml/3.2</uri>
+		</Namespace>
+	</namespaces>
+	<includedTypes>
+		<!--    <Include>../../au/AU/MappingAU.xml</Include>
+
+-->
+	</includedTypes>
+
+  <sourceDataStores>
+    <DataStore>
+      <id>idDataStoreInsp</id>
+      <parameters>
+        <Parameter>
+          <name>dbtype</name>
+          <value>postgisng</value>
+        </Parameter>
+        <Parameter>
+          <name>jndiReferenceName</name>
+          <value>jdbc/tnw</value>
+        </Parameter>
+        <Parameter>
+          <name>Expose primary keys</name>
+          <value>true</value>
+        </Parameter>
+      </parameters>
+    </DataStore>
+  </sourceDataStores>	
+	
+	<!--    <catalog>...</catalog>-->
+	<targetTypes>
+		<FeatureType>
+			<schemaUri>http://inspire.ec.europa.eu/schemas/ef/4.0/EnvironmentalMonitoringFacilities.xsd</schemaUri>
+
+		</FeatureType>
+	</targetTypes>
+	<typeMappings>
+
+ <!--
+		<FeatureTypeMapping>
+			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceType>bs2_contact_v</sourceType> 
+			<targetElement>base2:RelatedParty</targetElement>	
+			<attributeMappings>	
+
+				<AttributeMapping>
+					<targetAttribute>FEATURE_LINK</targetAttribute>
+					<sourceExpression>
+						<OCQL>conid</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>base2:individualName/gmd:LocalisedCharacterString</targetAttribute>
+					<sourceExpression>
+						<OCQL>individualname</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>base2:organisationName/gmd:LocalisedCharacterString</targetAttribute>
+					<sourceExpression>
+						<OCQL>organisationname</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>base2:contact</targetAttribute>
+					<sourceExpression>
+						<OCQL>conid</OCQL>
+						<linkElement>base2:Contact</linkElement>
+						<linkField>FEATURE_LINK</linkField>
+					</sourceExpression>
+				</AttributeMapping>
+			</attributeMappings>
+		</FeatureTypeMapping>
+-->
+		
+		<FeatureTypeMapping>
+			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceType>ef_obscaps_v</sourceType> 
+			<targetElement>ef:ObservingCapability</targetElement>	
+			<attributeMappings>	
+
+				<AttributeMapping>
+					<targetAttribute>FEATURE_LINK</targetAttribute>
+					<sourceExpression>
+						<OCQL>efid</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:ObservingCapability</targetAttribute>
+					<idExpression>
+						<OCQL>gmlid</OCQL>
+					</idExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:observingTime/gml:TimePeriod</targetAttribute>
+					<ClientProperty>
+						<name>gml:id</name>
+						<value>tpid</value>
+					</ClientProperty>
+				</AttributeMapping>				
+				
+				<AttributeMapping>
+					<targetAttribute>ef:observingTime/gml:TimePeriod/gml:beginPosition</targetAttribute>
+					<sourceExpression>
+						<OCQL>begintime</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:observingTime/gml:TimePeriod/gml:endPosition</targetAttribute>
+					<sourceExpression>
+						<OCQL>endtime</OCQL>
+					</sourceExpression>
+					<encodeIfEmpty>true</encodeIfEmpty>
+					<ClientProperty>
+						<name>indeterminatePosition</name>
+						<value>endtime_status</value>
+					</ClientProperty>
+				</AttributeMapping>				
+				<AttributeMapping>
+					<targetAttribute>ef:processType</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>processtype</value>
+					</ClientProperty>
+				</AttributeMapping>	
+				<AttributeMapping>
+					<targetAttribute>ef:resultNature</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>resultnature</value>
+					</ClientProperty>
+				</AttributeMapping>					<AttributeMapping>
+					<targetAttribute>ef:procedure</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>procedure</value>
+					</ClientProperty>
+					<ClientProperty>
+						<name>xlink:title</name>
+						<value>procedurelabel</value>
+					</ClientProperty>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>ef:featureOfInterest</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>foi</value>
+					</ClientProperty>
+				</AttributeMapping>					<AttributeMapping>
+					<targetAttribute>ef:observedProperty</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>observedproperty</value>
+					</ClientProperty>
+					<ClientProperty>
+						<name>xlink:title</name>
+						<value>observedpropertylabel</value>
+					</ClientProperty>
+				</AttributeMapping>					
+			</attributeMappings>
+		</FeatureTypeMapping>
+
+		<FeatureTypeMapping>
+		<!--	<mappingName>opact</mappingName> -->
+		
+			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceType>ef_opact_v</sourceType> 
+			<targetElement>ef:OperationalActivityPeriod</targetElement>	
+			<attributeMappings>	
+
+				<AttributeMapping>
+					<targetAttribute>FEATURE_LINK</targetAttribute>
+					<sourceExpression>
+						<OCQL>efid</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>ef:OperationalActivityPeriod</targetAttribute>
+					<idExpression>
+						<OCQL>gmlid</OCQL>
+					</idExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>ef:activityTime/gml:TimePeriod</targetAttribute>
+					<ClientProperty>
+						<name>gml:id</name>
+						<value>tpid</value>
+					</ClientProperty>
+				</AttributeMapping>				
+				<AttributeMapping>
+					<targetAttribute>ef:activityTime/gml:TimePeriod/gml:beginPosition</targetAttribute>
+					<sourceExpression>
+						<OCQL>begintime</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:activityTime/gml:TimePeriod/gml:endPosition</targetAttribute>
+					<sourceExpression>
+						<OCQL>endtime</OCQL>
+					</sourceExpression>
+					<encodeIfEmpty>true</encodeIfEmpty>
+					<ClientProperty>
+						<name>indeterminatePosition</name>
+						<value>endtime_status</value>
+					</ClientProperty>
+				</AttributeMapping>				
+			</attributeMappings>
+		</FeatureTypeMapping>
+		
+		<FeatureTypeMapping>
+			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceType>ef_emf_v</sourceType> 
+			<targetElement>ef:EnvironmentalMonitoringFacility</targetElement>	
+			<attributeMappings>
+				<AttributeMapping>
+					<targetAttribute>ef:EnvironmentalMonitoringFacility</targetAttribute>
+					<idExpression>
+						<OCQL>localid</OCQL>
+					</idExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>ef:inspireId/base:Identifier/base:localId</targetAttribute>
+					<sourceExpression>
+						<OCQL>localid</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+				<AttributeMapping>
+					<targetAttribute>ef:inspireId/base:Identifier/base:namespace</targetAttribute>
+					<sourceExpression>
+						<OCQL>namespace</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+		<!--		<AttributeMapping>
+					<targetAttribute>ef:inspireId/base:Identifier/base:versionId</targetAttribute>
+					<sourceExpression>
+						<OCQL>'Version'</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+-->
+				<AttributeMapping>
+					<targetAttribute>ef:name</targetAttribute>
+					<sourceExpression>
+						<OCQL>name</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>ef:mediaMonitored</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>mediamonitored</value>
+					</ClientProperty>					
+				</AttributeMapping>
+
+<!--	-->			
+				<AttributeMapping>
+					<targetAttribute>ef:responsibleParty</targetAttribute>
+					<sourceExpression>
+						<OCQL>id</OCQL>
+						<linkElement>base2:RelatedParty</linkElement>
+						<linkField>FEATURE_LINK</linkField>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>ef:geometry</targetAttribute>
+					<idExpression>
+						<OCQL>geometryid</OCQL>
+					</idExpression>
+					<sourceExpression>
+						<OCQL>geometry</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+
+				<AttributeMapping>
+					<targetAttribute>ef:observingCapability</targetAttribute>
+					<sourceExpression>
+						<OCQL>id</OCQL>
+						<linkElement>ef:ObservingCapability</linkElement>
+						<linkField>FEATURE_LINK</linkField>
+					</sourceExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:broader</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>broader</value>
+					</ClientProperty>
+				</AttributeMapping>	
+
+				<AttributeMapping>
+					<targetAttribute>ef:involvedIn</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>involvedin</value>
+					</ClientProperty>
+				</AttributeMapping>	
+
+				<AttributeMapping>
+					<targetAttribute>ef:measurementRegime</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>measurementregime</value>
+					</ClientProperty>
+				</AttributeMapping>	
+				<AttributeMapping>
+					<targetAttribute>ef:mobile</targetAttribute>
+					<sourceExpression>
+						<OCQL>mobile</OCQL>
+					</sourceExpression>
+				</AttributeMapping>
+	
+				<AttributeMapping>
+					<targetAttribute>ef:operationalActivityPeriod</targetAttribute>
+					<sourceExpression>
+						<OCQL>id</OCQL>
+						<linkElement>ef:OperationalActivityPeriod</linkElement>
+						<linkField>FEATURE_LINK</linkField>
+					</sourceExpression>
+				</AttributeMapping>
+				
+				<AttributeMapping>
+					<targetAttribute>ef:belongsTo</targetAttribute>
+					<ClientProperty>
+						<name>xlink:href</name>
+						<value>belongsto</value>
+					</ClientProperty>
+				</AttributeMapping>	
+			</attributeMappings>
+		</FeatureTypeMapping>
+			
+	</typeMappings>
+		
+</as:AppSchemaDataAccess>

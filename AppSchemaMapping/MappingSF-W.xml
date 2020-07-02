@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GeoServer configuration brought to you courtesy of DataCove.EU
+www.datacove.eu 
+-->
+<as:AppSchemaDataAccess xmlns:as="http://www.geotools.org/app-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.geotools.org/app-schema AppSchemaDataAccess.xsd">
+  <namespaces>
+    <Namespace>
+      <prefix>sf-w</prefix>
+      <uri>http://schema.datacove.eu/WaterSample</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>ef</prefix>
+      <uri>http://inspire.ec.europa.eu/schemas/ef/4.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>xlink</prefix>
+      <uri>http://www.w3.org/1999/xlink</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>base</prefix>
+      <uri>http://inspire.ec.europa.eu/schemas/base/3.3</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>sam</prefix>
+      <uri>http://www.opengis.net/sampling/2.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>sams</prefix>
+      <uri>http://www.opengis.net/samplingSpatial/2.0</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>xsi</prefix>
+      <uri>http://www.w3.org/2001/XMLSchema-instance</uri>
+    </Namespace>
+    <Namespace>
+      <prefix>gml</prefix>
+      <uri>http://www.opengis.net/gml/3.2</uri>
+    </Namespace>
+  </namespaces>
+  <includedTypes>
+    <!--    <Include>../../au/AU/MappingAU.xml</Include>
+
+-->
+  </includedTypes>
+  <sourceDataStores>
+    <DataStore>
+      <id>idDataStoreInsp</id>
+      <parameters>
+        <Parameter>
+          <name>dbtype</name>
+          <value>postgisng</value>
+        </Parameter>
+        <Parameter>
+          <name>jndiReferenceName</name>
+          <value>jdbc/tnw</value>
+        </Parameter>
+        <Parameter>
+          <name>Expose primary keys</name>
+          <value>true</value>
+        </Parameter>
+      </parameters>
+    </DataStore>
+  </sourceDataStores>
+  <!--    <catalog>...</catalog>-->
+  <targetTypes>
+    <FeatureType>
+      <schemaUri>https://schema.datacove.eu/WaterSample.xsd</schemaUri>
+    </FeatureType>
+  </targetTypes>
+  <typeMappings>
+    <FeatureTypeMapping>
+      <sourceDataStore>idDataStoreInsp</sourceDataStore>
+      <sourceType>ef_sample_v</sourceType>
+      <targetElement>sf-w:WaterSample</targetElement>
+      <defaultGeometry>sams:shape/gml:Point</defaultGeometry>
+      <attributeMappings>
+        <AttributeMapping>
+          <targetAttribute>FEATURE_LINK</targetAttribute>
+          <sourceExpression>
+            <OCQL>localid</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sf-w:WaterSample</targetAttribute>
+          <idExpression>
+            <OCQL>id</OCQL>
+          </idExpression>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sf-w:inspireId/base:Identifier/base:localId</targetAttribute>
+          <sourceExpression>
+            <OCQL>localid</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sf-w:inspireId/base:Identifier/base:namespace</targetAttribute>
+          <sourceExpression>
+            <OCQL>namespace</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sf-w:name</targetAttribute>
+          <sourceExpression>
+            <OCQL>name</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sam:sampledFeature</targetAttribute>
+          <ClientProperty>
+            <name>xlink:href</name>
+            <value>strconcat('http://service.datacove.eu/geoserver/ogc/features/collections/hy-n:WatercourseLinkSequence/items/', sampledfeature)</value>
+          </ClientProperty>
+        </AttributeMapping>
+        <AttributeMapping>
+          <targetAttribute>sams:shape/gml:Point</targetAttribute>
+          <idExpression>
+            <OCQL>geometryid</OCQL>
+          </idExpression>
+          <sourceExpression>
+            <OCQL>geometry</OCQL>
+          </sourceExpression>
+        </AttributeMapping>
+      </attributeMappings>
+    </FeatureTypeMapping>
+  </typeMappings>
+</as:AppSchemaDataAccess>
