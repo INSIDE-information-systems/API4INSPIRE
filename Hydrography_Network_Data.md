@@ -250,3 +250,9 @@ AS SELECT DISTINCT trm.cdtronconh AS id,
 The information on the individual segments comprising the watercourse link sequence are taken from the same table as used to provide data on the individual segments.
 
 * FK: cdtronconh --> hyn_watercourselink.id
+
+## GeoServer App Schema Mapping files for Hydrography Networks
+
+The following GeoServer App Schema Mapping files is available for Hydrography Networks:
+* [Mapping for Hydrography Networks](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/AppSchemaMapping/MappingHYN.xml)
+
