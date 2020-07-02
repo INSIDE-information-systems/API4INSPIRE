@@ -117,28 +117,6 @@ AS SELECT sf.cdstationhydro AS id,
   WHERE NOT sf.cdtronconhydrographique::text ~~ ''::text AND NOT sf.dtmiseservicestationhydro::text ~~ ''::text;
 ```
 
-### bs2_contact_v
-The view bs2_contact_v provides contact information for the RelatedParty type
-* FK: conid --> ef_emf_v.id
-```
-CREATE OR REPLACE VIEW public.bs2_contact_v
-AS SELECT NULL::text AS city,
-    NULL::text AS address,
-    NULL::text AS postcode,
-    NULL::text AS email,
-    NULL::text AS tel,
-    'http://id.eaufrance.fr/int/'::text || replace(sf.cdintervenant::text, ' '::text, ''::text) AS web,
-    sf.cdstationhydro AS conid,
-    sf.cdstationhydro AS id,
-    'fr'::text AS lang,
-    NULL::text AS individualname,
-    sf.nomintervenant AS organisationname,
-    NULL::text AS positionname,
-    'https://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/authority'::text AS role
-   FROM stationhydro_fxx sf
-  WHERE NOT sf.cdtronconhydrographique::text ~~ ''::text AND NOT sf.dtmiseservicestationhydro::text ~~ ''::text;
-```
-
 ### ef_obscaps_v
 
 As a ef:EnvironmentalMonitoringFacility featureType can be associated with multiple ObservingCapabilities, this information must be provided in an additional table.
@@ -218,3 +196,26 @@ AS SELECT sf.cdstationhydro::text AS id,
    FROM stationhydro_fxx sf
   WHERE NOT sf.cdtronconhydrographique::text ~~ ''::text AND NOT sf.dtmiseservicestationhydro::text ~~ ''::text;
 ```
+
+### bs2_contact_v
+The view bs2_contact_v provides contact information for the RelatedParty type
+* FK: conid --> ef_emf_v.id
+```
+CREATE OR REPLACE VIEW public.bs2_contact_v
+AS SELECT NULL::text AS city,
+    NULL::text AS address,
+    NULL::text AS postcode,
+    NULL::text AS email,
+    NULL::text AS tel,
+    'http://id.eaufrance.fr/int/'::text || replace(sf.cdintervenant::text, ' '::text, ''::text) AS web,
+    sf.cdstationhydro AS conid,
+    sf.cdstationhydro AS id,
+    'fr'::text AS lang,
+    NULL::text AS individualname,
+    sf.nomintervenant AS organisationname,
+    NULL::text AS positionname,
+    'https://inspire.ec.europa.eu/codelist/RelatedPartyRoleValue/authority'::text AS role
+   FROM stationhydro_fxx sf
+  WHERE NOT sf.cdtronconhydrographique::text ~~ ''::text AND NOT sf.dtmiseservicestationhydro::text ~~ ''::text;
+```
+
