@@ -2,6 +2,11 @@
 
 In the following sections, we provide information on the source data used and transformations required for the provision of Hydrography Networks under the INSPIRE Schema [https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd](https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd)
 
+The following sections we describe the data sources, mapping to INSPIRE featureTypes and creation of views for App Schema Mapping for the following featureTypes:
+* hy-n:WatercourseLink: A segment within the Hydrography Network
+* hy-n:HydroNode: A node within the Hydrography Network
+* hy-n:WatercourseLinkSequence: A set of WatercourseLink feature types comprising a Watercourse Sequence. Corresponds to cdtronconh
+
 ## Data Sources
 
 ### Segments
@@ -64,12 +69,22 @@ CREATE TABLE public.noeudhydrographique_02_rhin_meuse (
 );
 ```
 
+## Mapping from Source Data to INSPIRE Models
+
+The mapping from the source data to the INSPIRE data models was done as Google Sheets, one for each INSPIRE Type to be provided. The table has the following columns:
+* DB Table: The view from which the data element is made available for GeoServer App Schema Mapping.
+* DB Column: The column within the view from which the data element is made available for GeoServer App Schema Mapping.
+* {featureTypeName}: The target DataType, alternatively ```hy-n:WatercourseLink```, ```hy-n:WatercourseLinkSequence``` or ```Hy-n:HydroNode```
+* shp attribute: Attribute for the data element within the shapefile.
+* Constant: Constant value if required. This column also contains information on prefixes applied to data taken from the DB table.
+
+The tab "Hydro Node Category" provides the mapping from values in the Shapefile attribute nature to corresponding values from the INSPIRE HydroNodeCategory Codelist for the element ```hy-n:hydroNodeCategory``` under ```Hy-n:HydroNode```.
+
+[Mapping Sheet](https://docs.google.com/spreadsheets/d/1ckKaNaxTmWQz6kWyLpMuLVvU62plQWxv_oEYB3pIUcw/edit)
+
 ## Views for App Schema Mapping
 
-The following views have been created to transform the source data described above as required to provide data for the following INSPIRE Feature Types:
-* hy-n:WatercourseLink: A segment within the Hydrography Network
-* hy-n:HydroNode: A node within the Hydrography Network
-* hy-n:WatercourseLinkSequence: A set of WatercourseLink feature types comprising a Watercourse Sequence
+The following sections we describe the views created to transform the source data described above in accordance with the mapping.
 
 All sql for the views is available from [https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/sql/Hydrography.sql](https://github.com/INSIDE-information-systems/API4INSPIRE/blob/master/sql/Hydrography.sql)
 
