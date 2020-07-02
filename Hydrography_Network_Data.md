@@ -12,7 +12,7 @@ The following sections we describe the data sources, mapping to INSPIRE featureT
 ### Segments
 
 The source data for the French River Segments was imported from the ShapeFile TronconHydrograElt_02_Rhin-Meuse. This data was imported into a PostGIS DB via QGIS. 
-All further mapping is done from the resulting database table.
+All further mapping is done from the resulting database table, whereby the attribute names from the Shapefile were retained.
 
 *Note: in this dataset, there are too many segments, many could be merged. This data cleaning process was NOT performed on the available data. 
 However, the further mapping steps are still applicable once the data has been cleaned.*
