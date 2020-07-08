@@ -71,23 +71,43 @@ www.datacove.eu
 	</includedTypes>
 
   <sourceDataStores>
-    <DataStore>
-      <id>idDataStoreInsp</id>
-      <parameters>
-        <Parameter>
-          <name>dbtype</name>
-          <value>postgisng</value>
-        </Parameter>
-        <Parameter>
-          <name>jndiReferenceName</name>
-          <value>jdbc/tnw</value>
-        </Parameter>
-        <Parameter>
-          <name>Expose primary keys</name>
-          <value>true</value>
-        </Parameter>
-      </parameters>
-    </DataStore>
+	<DataStore>
+		<id>datastore</id>
+		<parameters>
+			<Parameter>
+				<name>dbtype</name>
+				<value>postgisng</value>
+			</Parameter>
+			<Parameter>
+				<name>host</name>
+				<value>${sie_features.host}</value>
+			</Parameter>
+			<Parameter>
+				<name>port</name>
+				<value>${sie_features.port}</value>
+			</Parameter>
+			<Parameter>
+				<name>database</name>
+				<value>${sie_features.database}</value>
+			</Parameter>
+			<Parameter>
+				<name>user</name>
+				<value>${sie_features.user}</value>
+			</Parameter>
+			<Parameter>
+				<name>passwd</name>
+				<value>${sie_features.passwd}</value>
+			</Parameter>
+			<Parameter>
+				<name>schema</name>
+				<value>${sie_features.schema}</value>
+			</Parameter>
+			<Parameter>
+				<name>Expose primary keys</name>
+				<value>true</value>
+			</Parameter>
+		</parameters>
+	</DataStore>
   </sourceDataStores>	
 	
 	<!--    <catalog>...</catalog>-->
@@ -99,9 +119,9 @@ www.datacove.eu
 	</targetTypes>
 	<typeMappings>
 
- <!--
+  <!--
 		<FeatureTypeMapping>
-			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceDataStore>datastore</sourceDataStore>	
 			<sourceType>bs2_contact_v</sourceType> 
 			<targetElement>base2:RelatedParty</targetElement>	
 			<attributeMappings>	
@@ -135,10 +155,9 @@ www.datacove.eu
 				</AttributeMapping>
 			</attributeMappings>
 		</FeatureTypeMapping>
--->
-		
+	-->	
 		<FeatureTypeMapping>
-			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceDataStore>datastore</sourceDataStore>	
 			<sourceType>ef_obscaps_v</sourceType> 
 			<targetElement>ef:ObservingCapability</targetElement>	
 			<attributeMappings>	
@@ -230,7 +249,7 @@ www.datacove.eu
 		<FeatureTypeMapping>
 		<!--	<mappingName>opact</mappingName> -->
 		
-			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
+			<sourceDataStore>datastore</sourceDataStore>	
 			<sourceType>ef_opact_v</sourceType> 
 			<targetElement>ef:OperationalActivityPeriod</targetElement>	
 			<attributeMappings>	
@@ -276,10 +295,22 @@ www.datacove.eu
 		</FeatureTypeMapping>
 		
 		<FeatureTypeMapping>
-			<sourceDataStore>idDataStoreInsp</sourceDataStore>	
-			<sourceType>ef_emf_v</sourceType> 
+			<sourceDataStore>datastore</sourceDataStore>	
+			<sourceType>ef_emf_v</sourceType>
 			<targetElement>ef:EnvironmentalMonitoringFacility</targetElement>	
 			<attributeMappings>
+
+				<AttributeMapping>
+					<targetAttribute>gml:identifier</targetAttribute>
+					<ClientProperty>
+						<name>codeSpace</name>
+						<value>'http://www.ietf.org/rfc/rfc2616'</value>
+					</ClientProperty>
+					<sourceExpression>
+						<OCQL>strConcat('https://iddata.eaufrance.fr/id/HydroStation/',localid)</OCQL>
+					</sourceExpression>	
+				</AttributeMapping>
+
 				<AttributeMapping>
 					<targetAttribute>ef:EnvironmentalMonitoringFacility</targetAttribute>
 					<idExpression>
@@ -320,7 +351,7 @@ www.datacove.eu
 					</ClientProperty>					
 				</AttributeMapping>
 
-<!--	-->			
+<!--TODO SG : reactive it  -->
 				<AttributeMapping>
 					<targetAttribute>ef:responsibleParty</targetAttribute>
 					<sourceExpression>
