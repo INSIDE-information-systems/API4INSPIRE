@@ -12,7 +12,11 @@ AS SELECT sf.cdstationh AS id,
     'http://inspire.ec.europa.eu/codelist/MeasurementRegimeValue/continuousDataCollection'::text AS measurementregime,
     'false'::text AS mobile,
     NULL::text AS belongsto,
+    -- added sameas
+    'http://id.eaufrance.fr/StationHydro/'::text || sf.cdstationh::text AS sameas,
     'PT.'::text || sf.cdstationh::text AS geometryid,   
+    -- note: I had the following as Geometry:
+    --     st_setsrid(st_makepoint(sf.x::double precision, sf.y::double precision), 4326) AS geometry
     geom AS geometry
    FROM hydrostation.stationhydro_fxx sf
   WHERE NOT sf.cdtronconh::text ~~ ''::text AND NOT sf.dtmservice::text ~~ ''::text;
