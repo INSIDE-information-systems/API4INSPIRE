@@ -561,6 +561,7 @@
       <sourceDataStore>idDataStoreInsp</sourceDataStore>
       <sourceType>hyn_linksequence_v</sourceType>
       <targetElement>hy-n:WatercourseLinkSequence</targetElement>
+	  <defaultGeometry>gml:location/gml:LineString</defaultGeometry> 
       <attributeMappings>
         <AttributeMapping>
           <targetAttribute>hy-n:WatercourseLinkSequence</targetAttribute>
@@ -635,7 +636,19 @@
             <linkField>FEATURE_LINK</linkField>
           </sourceExpression>
         </AttributeMapping>
+<!--	-->	
+        <AttributeMapping>
+          <targetAttribute>gml:location/gml:LineString</targetAttribute>
+          <idExpression>
+            <OCQL>strconcat('LN.', localid)</OCQL>
+          </idExpression>
+          <sourceExpression>
+            <OCQL>geo</OCQL>
+          </sourceExpression>
+        </AttributeMapping>		
+
       </attributeMappings>
+	  
     </FeatureTypeMapping>	  
 	
     <FeatureTypeMapping>
