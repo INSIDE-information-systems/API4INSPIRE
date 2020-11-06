@@ -12,7 +12,7 @@ As each element (feature instance) is assigned a URI it can
 	- or via the corresponding request in the API : https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items/A021005050?f=application%2Fgeo%2Bjson
 
 - appear in search response from the API
-	- 	https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items?f=application%2Fld%2Bjson&limit=50&filter-lang=cql-text&filter=features.name='Le Rhin en Suisse [Rheinhalle]'
+	- https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items?f=application%2Fgeo%2Bjson&limit=50&filter-lang=cql-text&filter=name='Le%20Rhin%20en%20Suisse%20%5BRheinhalle%5D'
 
 ### A nice example
 From an HydroStation (ex: https://iddata.eaufrance.fr/id/HydroStation/A021005050?f=application%2Fgeo%2Bjson)  you are able
