@@ -57,3 +57,14 @@ From an Environmental Groundwater Quantity Monitoring Facility (ex: https://data
   - GeoJSON : https://data.geoscience.fr/id/EMF/GroundwaterQuantity/02332X0198?f=application%2Fgeo%2Bjson 
   - JSON-LD : https://data.geoscience.fr/id/EMF/GroundwaterQuantity/02332X0198?f=application%2Fld%2Bjson
   - GML : https://data.geoscience.fr/id/EMF/GroundwaterQuantity/02332X0198?f=application%2Fgml%2Bxml
+  
+ 
+## Configuration
+- OGC API Features (Core, HTML, GeoJSON, OpenAPI,..)
+- OGC SensorThings API
+- APIs successfully tested with desktop (QGIS) & web client (WebGenesis, BLiV) : either in GeoJSON, GML, JSON-LD
+
+## Software
+- OGC API Features: Geoserver 2.17.2 + modules & extensions (ogcapi, app-schema, features-templating for JSON-LD, GeoJSON) + core GeoJSON heuristics
+- OGC SensorThings API: FROST Server 1.11.0
+- Resolver : home baked solution with Apache mod_rewrite + NGINX on top
