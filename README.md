@@ -4,9 +4,15 @@
 ### API endpoint
 Hydro Features API : https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/
 
-As each element (feature instance) is assigned a URI it can either be accessed through
-- its URI (+ content negociation): https://iddata.eaufrance.fr/id/HydroStation/A021005050?f=application%2Fgeo%2Bjson
-- or via the corresponding request in the API : https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items/A021005050?f=application%2Fgeo%2Bjson
+As each element (feature instance) is assigned a URI it can 
+- be directly accessed through
+	- its URI (+ content negociation): https://iddata.eaufrance.fr/id/HydroStation/A021005050?f=application%2Fgeo%2Bjson
+	
+	this means you can traverse from one feature instance to another without going back to searching back in APIs !
+	- or via the corresponding request in the API : https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items/A021005050?f=application%2Fgeo%2Bjson
+
+- appear in search response from the API
+	- 	https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/ef:EnvironmentalMonitoringFacility/items?f=application%2Fld%2Bjson&limit=50&filter-lang=cql-text&filter=features.name='Le Rhin en Suisse [Rheinhalle]'
 
 ### A nice example
 From an HydroStation (ex: https://iddata.eaufrance.fr/id/HydroStation/A021005050?f=application%2Fgeo%2Bjson)  you are able
