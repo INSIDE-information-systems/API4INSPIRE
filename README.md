@@ -68,7 +68,7 @@ From an Environmental Groundwater Quantity Monitoring Facility (ex: https://data
 ## Configuration
 - OGC API Features (Core, HTML, GeoJSON, OpenAPI,..)
 - OGC SensorThings API
-- APIs successfully tested with desktop (QGIS) & web client (WebGenesis, BLiV) : either in GeoJSON, GML, JSON-LD
+- APIs successfully tested with desktop (QGIS), web client (WebGenesis, BLiV) and validators ([GeoJSON playground](https://geojson.io/), [JSON-LD playground](https://json-ld.org/playground/)): either in GeoJSON, GML, JSON-LD
 
 ## Software
 - OGC API Features: Geoserver 2.17.2 + modules & extensions (ogcapi, app-schema, features-templating for JSON-LD, GeoJSON) + core GeoJSON heuristics
