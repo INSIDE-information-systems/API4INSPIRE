@@ -17,7 +17,7 @@ From an HydroStation (ex: https://iddata.eaufrance.fr/id/HydroStation/A021005050
 
 Let say the image below is the Rhine river ('le Rhin')
 
-![Hydro data Big Picture ](./Docs/HydroData_Big_picture.png)
+![Hydro data Big Picture ](./Docs/HydroData_Big_picture.png){:height="60%" width="60%"}
 
 If we zoom a bit all is linked together like this thanks to a resolver on top of OGC APIs (Features and SensorThings API).
 
