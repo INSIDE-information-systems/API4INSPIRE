@@ -1,5 +1,9 @@
 # API4INSPIRE
 
+## Overview
+More content available in https://datacoveeu.github.io/API4INSPIRE/.
+This repo is deployed to support the French part of the 'Franco-Germanic Flow' Use Case.
+
 ## Surface water
 ### API endpoint
 Hydro Features API : https://iddata.eaufrance.fr/api/hydroFAPI/ogc/features/collections/
